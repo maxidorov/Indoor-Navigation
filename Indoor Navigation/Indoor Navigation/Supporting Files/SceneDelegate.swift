@@ -2,8 +2,8 @@
 //  SceneDelegate.swift
 //  Indoor Navigation
 //
-//  Created by Maxim Sidorov on 10.04.2020.
-//  Copyright © 2020 Maxim Sidorov. All rights reserved.
+//  Created by Maxim Sidorov & Dmitriy Zhbannikov on 10.04.2020.
+//  Copyright © 2020 Maxim Sidorov & Dmitriy Zhbannikov. All rights reserved.
 //
 
 import UIKit
