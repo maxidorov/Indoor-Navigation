@@ -1,8 +1,8 @@
 //
 //  UIView+shadowColor.swift
-//  Prompter
+//  Indoor Navigation
 //
-//  Created by Maxim Sidorov on 20.04.2020.
+//  Created by Maxim Sidorov & Dmitriy Zhbannikov on 14.06.2020.
 //  Copyright © 2020 Maxim Sidorov. All rights reserved.
 //
 

@@ -13,8 +13,8 @@ class RootViewController: UIViewController {
     var current: UIViewController
     
     init() {
-        let checkPointViewController = CheckPointViewController()
-        self.current = checkPointViewController
+        let locationsViewController = UINavigationController(rootViewController: LocationsViewController())
+        self.current = locationsViewController
         super.init(nibName: nil, bundle: nil)
     }
     

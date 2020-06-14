@@ -16,6 +16,10 @@ class CheckPointViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Find QR Code"
+        navigationController?.navigationBar.tintColor = UIColor.black
+        
         setupSceneView()
         startTracking()
     }
