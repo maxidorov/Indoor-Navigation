@@ -9,6 +9,7 @@
 import Foundation
 
 class RouteManager {
+    
     enum Mode {
         case finding
         case routing

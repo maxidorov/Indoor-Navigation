@@ -66,7 +66,7 @@ extension LocationsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard indexPath.row == 0 else { return }
-        let checkPointViewController = CheckPointViewController()
+        let checkPointViewController = NavigationModeViewController()
         navigationController?.pushViewController(checkPointViewController, animated: true)
     }
 }

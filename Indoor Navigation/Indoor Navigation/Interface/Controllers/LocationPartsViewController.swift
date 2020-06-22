@@ -59,7 +59,6 @@ extension LocationPartsViewController: UITableViewDelegate, UITableViewDataSourc
         case 2: routeManager.route = RouteHelper.buildRoute(to: .hall)
         default: break
         }
-        
         sceneView.session.pause()
         sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
         dismiss(animated: true, completion: nil)

@@ -14,6 +14,7 @@
 		34276DFB24A0C9FC00C9664C /* RouteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34276DFA24A0C9FC00C9664C /* RouteManager.swift */; };
 		34276DFD24A0CCB600C9664C /* LocationPartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34276DFC24A0CCB600C9664C /* LocationPartsViewController.swift */; };
 		34276E0224A0E1CC00C9664C /* RouteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34276E0124A0E1CC00C9664C /* RouteHelper.swift */; };
+		34276E0424A1269900C9664C /* NavigationModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34276E0324A1269900C9664C /* NavigationModeViewController.swift */; };
 		34384E1C2440E44C00279DBE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34384E1B2440E44C00279DBE /* AppDelegate.swift */; };
 		34384E1E2440E44C00279DBE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34384E1D2440E44C00279DBE /* SceneDelegate.swift */; };
 		34384E202440E44C00279DBE /* CheckPointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34384E1F2440E44C00279DBE /* CheckPointViewController.swift */; };
@@ -42,6 +43,7 @@
 		34276DFA24A0C9FC00C9664C /* RouteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteManager.swift; sourceTree = "<group>"; };
 		34276DFC24A0CCB600C9664C /* LocationPartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPartsViewController.swift; sourceTree = "<group>"; };
 		34276E0124A0E1CC00C9664C /* RouteHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteHelper.swift; sourceTree = "<group>"; };
+		34276E0324A1269900C9664C /* NavigationModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModeViewController.swift; sourceTree = "<group>"; };
 		34384E182440E44C00279DBE /* Indoor Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Indoor Navigation.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		34384E1B2440E44C00279DBE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34384E1D2440E44C00279DBE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				34384E372440E5E900279DBE /* MapViewController.swift */,
 				34276DF224A0AD2E00C9664C /* ArrowsViewController.swift */,
 				34276DFC24A0CCB600C9664C /* LocationPartsViewController.swift */,
+				34276E0324A1269900C9664C /* NavigationModeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				34276DF524A0C3EE00C9664C /* QRCodes.swift in Sources */,
 				34384E3B2440E63C00279DBE /* CompassHeading.swift in Sources */,
 				34384E382440E5E900279DBE /* MapViewController.swift in Sources */,
+				34276E0424A1269900C9664C /* NavigationModeViewController.swift in Sources */,
 				34276DFB24A0C9FC00C9664C /* RouteManager.swift in Sources */,
 				3462D83C2496A12A001F3C7D /* LocationCell.swift in Sources */,
 				34276DFD24A0CCB600C9664C /* LocationPartsViewController.swift in Sources */,
