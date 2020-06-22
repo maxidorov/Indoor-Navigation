@@ -5,7 +5,19 @@
   },
   "resources" : [
     {
-      "filename" : "QR code example.arreferenceimage"
+      "filename" : "location0.arreferenceimage"
+    },
+    {
+      "filename" : "location1.arreferenceimage"
+    },
+    {
+      "filename" : "location2.arreferenceimage"
+    },
+    {
+      "filename" : "location3.arreferenceimage"
+    },
+    {
+      "filename" : "QRfind.arreferenceimage"
     }
   ]
 }

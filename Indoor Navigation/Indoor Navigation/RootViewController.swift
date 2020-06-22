@@ -13,8 +13,13 @@ class RootViewController: UIViewController {
     var current: UIViewController
     
     init() {
-        let locationsViewController = UINavigationController(rootViewController: LocationsViewController())
-        self.current = locationsViewController
+        
+//        let locationsViewController = UINavigationController(rootViewController: LocationsViewController())
+//        self.current = locationsViewController
+        
+        let arrowsViewController = ArrowsViewController()
+        self.current = arrowsViewController
+        
         super.init(nibName: nil, bundle: nil)
     }
     
