@@ -11,7 +11,7 @@ import UIKit
 
 class NavigationModeViewController: UIViewController {
     
-    let modes = ["Map", "AR"];
+    let modes = ["Map", "QR Codes", "AR"];
     
     let tableView = UITableView()
     static let cellID = "cellID"
@@ -52,6 +52,8 @@ extension NavigationModeViewController: UITableViewDelegate, UITableViewDataSour
             nextViewController = CheckPointViewController()
         case 1:
             nextViewController = ArrowsViewController()
+        case 2:
+            nextViewController = ARLineViewController()
         default:
             return
         }

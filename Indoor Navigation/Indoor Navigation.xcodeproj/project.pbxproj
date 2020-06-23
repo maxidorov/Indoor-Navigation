@@ -33,6 +33,9 @@
 		3462D84C2496A85D001F3C7D /* UIView+cornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3462D8462496A85C001F3C7D /* UIView+cornerRadius.swift */; };
 		3462D84D2496A85D001F3C7D /* UIView+shadowColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3462D8472496A85C001F3C7D /* UIView+shadowColor.swift */; };
 		3462D84E2496A85D001F3C7D /* UIView+shadowOpacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3462D8482496A85C001F3C7D /* UIView+shadowOpacity.swift */; };
+		34E754BE24A2578D00F8785E /* ARLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E754BD24A2578D00F8785E /* ARLineViewController.swift */; };
+		34E754C024A257E200F8785E /* CylinderLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E754BF24A257E200F8785E /* CylinderLine.swift */; };
+		34E754C224A257F000F8785E /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E754C124A257F000F8785E /* Plane.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +67,9 @@
 		3462D8462496A85C001F3C7D /* UIView+cornerRadius.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+cornerRadius.swift"; sourceTree = "<group>"; };
 		3462D8472496A85C001F3C7D /* UIView+shadowColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+shadowColor.swift"; sourceTree = "<group>"; };
 		3462D8482496A85C001F3C7D /* UIView+shadowOpacity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+shadowOpacity.swift"; sourceTree = "<group>"; };
+		34E754BD24A2578D00F8785E /* ARLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARLineViewController.swift; sourceTree = "<group>"; };
+		34E754BF24A257E200F8785E /* CylinderLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CylinderLine.swift; sourceTree = "<group>"; };
+		34E754C124A257F000F8785E /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +86,8 @@
 		34276DFE24A0DEDC00C9664C /* Routing */ = {
 			isa = PBXGroup;
 			children = (
+				34E754BF24A257E200F8785E /* CylinderLine.swift */,
+				34E754C124A257F000F8785E /* Plane.swift */,
 				34276DF024A0AB7400C9664C /* RouteStep.swift */,
 				34276DFA24A0C9FC00C9664C /* RouteManager.swift */,
 				34276E0124A0E1CC00C9664C /* RouteHelper.swift */,
@@ -141,6 +149,7 @@
 			children = (
 				3462D83124969F05001F3C7D /* LocationsViewController.swift */,
 				34384E1F2440E44C00279DBE /* CheckPointViewController.swift */,
+				34E754BD24A2578D00F8785E /* ARLineViewController.swift */,
 				34384E372440E5E900279DBE /* MapViewController.swift */,
 				34276DF224A0AD2E00C9664C /* ArrowsViewController.swift */,
 				34276DFC24A0CCB600C9664C /* LocationPartsViewController.swift */,
@@ -264,11 +273,13 @@
 				34276DF124A0AB7400C9664C /* RouteStep.swift in Sources */,
 				34384E1C2440E44C00279DBE /* AppDelegate.swift in Sources */,
 				3462D8492496A85D001F3C7D /* UIView+shadowRadius.swift in Sources */,
+				34E754C024A257E200F8785E /* CylinderLine.swift in Sources */,
 				3462D83F2496A15C001F3C7D /* Location.swift in Sources */,
 				34276DF324A0AD2E00C9664C /* ArrowsViewController.swift in Sources */,
 				3462D84E2496A85D001F3C7D /* UIView+shadowOpacity.swift in Sources */,
 				34276DF524A0C3EE00C9664C /* QRCodes.swift in Sources */,
 				34384E3B2440E63C00279DBE /* CompassHeading.swift in Sources */,
+				34E754C224A257F000F8785E /* Plane.swift in Sources */,
 				34384E382440E5E900279DBE /* MapViewController.swift in Sources */,
 				34276E0424A1269900C9664C /* NavigationModeViewController.swift in Sources */,
 				34276DFB24A0C9FC00C9664C /* RouteManager.swift in Sources */,
@@ -277,6 +288,7 @@
 				3462D8422496A841001F3C7D /* UIView+setupShadow.swift in Sources */,
 				3462D84D2496A85D001F3C7D /* UIView+shadowColor.swift in Sources */,
 				34384E1E2440E44C00279DBE /* SceneDelegate.swift in Sources */,
+				34E754BE24A2578D00F8785E /* ARLineViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
