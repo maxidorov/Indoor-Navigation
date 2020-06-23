@@ -49,7 +49,7 @@ extension NavigationModeViewController: UITableViewDelegate, UITableViewDataSour
         var nextViewController: UIViewController!
         switch indexPath.row {
         case 0:
-            nextViewController = MapViewController()
+            nextViewController = CheckPointViewController()
         case 1:
             nextViewController = ArrowsViewController()
         default:
