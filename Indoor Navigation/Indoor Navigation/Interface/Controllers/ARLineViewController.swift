@@ -1,12 +1,4 @@
 //
-//  ARLineViewController.swift
-//  Indoor Navigation
-//
-//  Created by Maxim Sidorov on 23.06.2020.
-//  Copyright © 2020 Maxim Sidorov. All rights reserved.
-//
-
-//
 //  ViewController.swift
 //  Indoor Navigation
 //
