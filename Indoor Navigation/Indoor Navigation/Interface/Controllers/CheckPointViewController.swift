@@ -90,7 +90,7 @@ class CheckPointViewController: UIViewController {
                     let mapViewController = MapViewController()
                     mapViewController.modalPresentationStyle = .fullScreen
                     self.sceneView.stop(self)
-                    self.present(mapViewController, animated: true, completion: nil)
+                    self.navigationController?.pushViewController(mapViewController, animated: true)
                 }
             }
         }
