@@ -11,7 +11,7 @@ import ARKit
 
 class LocationPartsViewController: UIViewController {
     
-    let locationParts = ["Кухня", "Маленькая комната", "Большая комната"]
+    let locationParts = ["Kitchen", "Bedroom", "Hall"]
     
     let tableView = UITableView()
     static let cellID = "cellID"

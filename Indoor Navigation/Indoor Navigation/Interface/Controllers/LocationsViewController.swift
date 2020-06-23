@@ -26,7 +26,7 @@ class LocationsViewController: UIViewController {
     
     private func setupLocations() {
         locations = [
-            Location(title: "Test location", subtitle: "Dima's trap hata", image: UIImage(named: "map")),
+            Location(title: "Test location", subtitle: "Flat", image: UIImage(named: "map")),
             Location(title: "Pokrovka", subtitle: "Higher School of Economics", image: UIImage(named: "HSE")),
             Location(title: "Sberbank", subtitle: "Office space", image: UIImage(named: "Sberbank")),
             Location(title: "Aviapark", subtitle: "Shopping center", image: UIImage(named: "Aviapark"))

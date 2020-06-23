@@ -45,7 +45,7 @@ class CheckPointViewController: UIViewController {
             nodeBackgroundElement.eulerAngles.x = -.pi / 2
             nodeWithText.addChildNode(nodeBackgroundElement)
             
-            let nodeText = SCNText(string: "Начать\nнавигацию", extrusionDepth: 1)
+            let nodeText = SCNText(string: "Start\nnavigation", extrusionDepth: 1)
             let material = SCNMaterial()
             material.diffuse.contents = UIColor.black
             nodeText.materials = [material]
