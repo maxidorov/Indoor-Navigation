@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ARLineViewController.swift
 //  Indoor Navigation
 //
 //  Created by Maxim Sidorov & Dmitriy Zhbannikov & Sergey Yukhatskov on 10.04.2020.
@@ -29,7 +29,7 @@ class ARLineViewController: UIViewController {
     var pathGraph = GKGraph()
     let rootNavigationNode = SCNNode()
     
-    //идея Димы
+    //one more idea
     let rootPOINode = SCNNode()
     var poiNode = [String]()
     let startPosition = SCNVector3Make(-2, -1, 3)
@@ -59,11 +59,8 @@ class ARLineViewController: UIViewController {
             configuration.trackingImages = trackingImages
             configuration.maximumNumberOfTrackedImages = 1
         }
-//        self.sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints,ARSCNDebugOptions.showWorldOrigin]
-//        self.sceneView.autoenablesDefaultLighting = true
-//        configuration.planeDetection = .horizontal
+
         sceneView.session.run(configuration)
-//        self.sceneView.scene.rootNode.addChildNode(rootPathNode)
     }
     
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
@@ -132,187 +129,19 @@ class ARLineViewController: UIViewController {
         self.sceneView.scene.rootNode.addChildNode(rootPOINode)
         
         tempNodeFlag = true
-//        pathNodes[0].position.y = pathNodes[1].position.y
+
         pathNodes[0].position.y = -1
         tempYAxis = pathNodes[0].position.y
-//        addPathNodes(n1: pathNodes[0].position,n2: pathNodes[1].position)
-//        addPathNodes(n1: startPosition, n2: finish)
-        addPathNodes(n1: startPosition, n2:finish)
+        
+        addSpheres(node1Position: startPosition, node2Positon: finish)
+        addNodesDict(node1Positon: startPosition, node2Positon: finish)
+        
         tempNodeFlag = false
         counter = 0
-//        addPathNodes(n1: startPosition, n2: SCNVector3(1,1,1))
+
         self.poiFlag = true
         poiCounter += 1
-        tempFunc(destNode: str_finish)
-//        x =  -1.3228489 y =  -1.3228489 z =  -1.016277
-//        tempNodeFlag = true
-//        if rec.state == .ended {
-//            let location: CGPoint = rec.location(in: sceneView)
-//            let hits = self.sceneView.hitTest(location, options: nil)
-//            if !hits.isEmpty{
-//                DispatchQueue.main.async {
-//                    let mapViewController = MapViewController()
-//                    mapViewController.modalPresentationStyle = .fullScreen
-//                    self.sceneView.stop(self)
-//                    self.present(mapViewController, animated: true, completion: nil)
-//                }
-//            }
-//        }
-    }
-    
-    func tempFunc(destNode:String) {
-            
-            for (key,_) in dictPlanes {
-                let plane = key as ARAnchor
-                self.sceneView.session.remove(anchor: plane)
-            }
-            dictPlanes = [ARPlaneAnchor:Plane]()
-            self.sceneView.debugOptions.remove(
-                [ARSCNDebugOptions.showFeaturePoints,ARSCNDebugOptions.showWorldOrigin])
-    //                rootPathNode.removeFromParentNode()
-            rootTempNode.removeFromParentNode()
-                    rootConnectingNode.removeFromParentNode()
-            
-            var minDistanc = Float()
-            minDistanc = 1000
-            var nearestNode = SCNNode()
-            
-            rootPathNode.enumerateChildNodes { (child, _) in
-                if !isEqual(n1: origin, n2: child.position) {
-                    
-                    let dist0 = distanceBetween(n1: cameraLocation, n2: child.position)
-                    if minDistanc>dist0 {
-                        
-                        minDistanc = dist0
-                        nearestNode = child
-                    }
-                }
-            }
-            stringPathMap["\(cameraLocation)"] = ["\(nearestNode.position)"]
-            strNode = "\(cameraLocation)"
-            
-            retrieveFromDictAndNavigate(destNode:destNode)
-        }
-    
-    func retrieveFromDictAndNavigate(destNode:String) {
-            
-            rootNavigationNode.enumerateChildNodes { (node, _) in
-                node.removeFromParentNode()
-            }
-            for data in stringPathMap {
-                let myVector = self.getVector2FromString(str: data.key)
-                let myPos = self.getVector2FromString(str: data.value[0])
-                print("point_pos: ", data.value[0])
-                print("my_pos: ", data.key)
-                dictOfNodes[data.key] = GKGraphNode2D(point: vector2(Float(myVector.x),Float(myVector.z)))
-                pathGraph.add([dictOfNodes[data.key]!])
-            }
-        
-            for data in stringPathMap {
-                print("HERE")
-                print(data)
-
-                let keyNode = dictOfNodes[data.key]!
-
-                for data2 in data.value {
-
-                    keyNode.addConnections(to: [dictOfNodes["\(data2)"]!], bidirectional: true)
-                }
-            }
-            let startKeyVectorString = strNode
-            let destKeyVectorString = destNode
-            print(dictOfNodes)
-            let startNodeFromDict = dictOfNodes[startKeyVectorString]
-            let destNodeFromDict = dictOfNodes[destKeyVectorString]
-//            print(dictOfNodes)
-//            exit(0)
-            let wayPoint:[GKGraphNode2D] = pathGraph.findPath(from: startNodeFromDict!, to: destNodeFromDict!) as! [GKGraphNode2D]
-            
-            var x = wayPoint[0]
-            var skipWaypointFlag = true
-            for path in wayPoint {
-                
-                if skipWaypointFlag {
-                    skipWaypointFlag = false
-                    continue
-                }
-                let str = SCNVector3(x.position.x, tempYAxis, x.position.y)
-                let dst = SCNVector3(path.position.x, tempYAxis, path.position.y)
-                print("WARNING")
-                let navigationNode = CylinderLine(v1: str, v2: dst, radius: 0.2, UIImageName:"Navi")
-                navigationNode.startTimer()
-                rootNavigationNode.addChildNode(navigationNode)
-                x = path
-            }
-            pathGraph = GKGraph()
-            stringPathMap.removeValue(forKey: strNode)
-            
-        }
-    
-    func getVector2FromString(str:String) -> vector_double3 {
-        
-        let xrange = str.index(str.startIndex, offsetBy: 10)...str.index(str.endIndex, offsetBy: -1)
-        let str1 = str[xrange]
-        
-        var x:String = ""
-        var y:String = ""
-        var z:String = ""
-        var counter = 1
-        for i in str1 {
-            //    print (i)
-            if (i == "-" || i == "." || i == "0" || i == "1" || i == "2" || i == "3" || i == "4" || i == "5" || i == "6" || i == "7" || i == "8" || i == "9") {
-                switch counter {
-                case 1 : x = x + "\(i)"
-                case 2 : y = y + "\(i)"
-                case 3 : z = z + "\(i)"
-                default : break
-                }
-            } else if (i == ",") {
-                counter = counter + 1
-            }
-        }
-        return vector3(Double(x)!,Double(y)!,Double(z)!)
-    }
-    
-    func addPointOfInterestNode(hitTestResult:ARHitTestResult) {
-       
-        let transform = hitTestResult.worldTransform
-        let thirdColumn = transform.columns.3
-        
-        let node = SCNNode(geometry:SCNCylinder(radius: 0.04, height: 1.7))
-        node.geometry?.firstMaterial?.diffuse.contents = UIColor.red
-        node.position = SCNVector3Make(finish.x, finish.y+0.85, finish.z)
-        rootPOINode.addChildNode(node)
-        
-        let node2 = SCNNode(geometry:SCNBox(width: 0.25, height: 0.25, length: 0.25, chamferRadius: 0.01))
-        switch poiCounter {
-        case 1:
-            node2.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "G")
-        case 2:
-            node2.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "C")
-        default:
-            node2.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "first")
-        }
-        node2.position = SCNVector3Make(finish.x, finish.y+1.5, finish.z)
-        rootPOINode.addChildNode(node2)
-        
-        var minDistanc = Float()
-        minDistanc = 1000
-        var nearestNode = SCNNode()
-        
-        rootPathNode.enumerateChildNodes { (child, _) in
-            if !isEqual(n1: origin, n2: child.position) {
-                
-                let dist0 = distanceBetween(n1: node.position, n2: child.position)
-                if minDistanc>dist0 {
-                    
-                    minDistanc = dist0
-                    nearestNode = child
-                }
-            }
-        }
-        stringPathMap["\(node.position)"] = ["\(nearestNode.position)"]
-        poiNode.append("\(node.position)")
+        calcRoute(destNode: str_finish)
     }
     
 }
@@ -328,38 +157,27 @@ extension ARLineViewController: ARSCNViewDelegate {
         view.addSubview(sceneView)
     }
     
-    func addPathNodes(n1:SCNVector3, n2:SCNVector3) {
-        var node1Position = n1
-        var node2Position = n2
-        var isNode1exists = false
-        var isNode2exists = false
-//        rootPathNode.enumerateChildNodes({ (child, _) in
-//
-//            // To merge path node less than 0.5 meters
-//            if !isEqual(n1: origin, n2: child.position) {
-//
-//                let dist0 = distanceBetween(n1: n1, n2: child.position)
-//                let dist1 = distanceBetween(n1: n2, n2: child.position)
-//                if(dist0 <= 0.5){
-//                    node1Position = child.position
-//                    isNode1exists = true
-//                }
-//                if(dist1 <= 0.5){
-//                    node2Position = child.position
-//                    isNode2exists = true
-//                }
-//            }
-//        })
-        print(node1Position)
-        print(node2Position)
-        addPathNodeWithConnectingNode(node1Position: node1Position, node2Positon: node2Position)
-        mapNodesToStringDict(node1Positon: node1Position, node2Positon: node2Position, isNode1exists: isNode1exists, isNode2exists: isNode2exists)
+    func calcRoute(destNode:String) {
         
-        isNode1exists = false
-        isNode2exists = false
+        for (key,_) in dictPlanes {
+            let plane = key as ARAnchor
+            self.sceneView.session.remove(anchor: plane)
+        }
+        dictPlanes = [ARPlaneAnchor:Plane]()
+        self.sceneView.debugOptions.remove(
+            [ARSCNDebugOptions.showFeaturePoints,ARSCNDebugOptions.showWorldOrigin])
+        rootTempNode.removeFromParentNode()
+                rootConnectingNode.removeFromParentNode()
+
+    let nearestNode = findNearestNode(node: cameraLocation.self)
+
+        stringPathMap["\(cameraLocation)"] = ["\(nearestNode.position)"]
+        strNode = "\(cameraLocation)"
+        
+        navigate(destNode:destNode)
     }
     
-    func addPathNodeWithConnectingNode(node1Position:SCNVector3,node2Positon:SCNVector3) {
+    func addSpheres(node1Position:SCNVector3,node2Positon:SCNVector3) {
         
         let pathNode = SCNNode()
         let node = SCNNode(geometry: SCNSphere(radius: 0.05))
@@ -394,7 +212,7 @@ extension ARLineViewController: ARSCNViewDelegate {
                 self.addTempNode(hitTestResult: hitTest.first!)
             }
             if self.poiFlag && !hitTest.isEmpty {
-                self.addPointOfInterestNode(hitTestResult: hitTest.first!)
+                self.addFinishNode(hitTestResult: hitTest.first!)
                 self.poiFlag = false
             }
             guard let pointOfView = self.sceneView.pointOfView else { return }
@@ -419,30 +237,11 @@ extension ARLineViewController: ARSCNViewDelegate {
         }
     }
     
-    func mapNodesToStringDict (node1Positon:SCNVector3,node2Positon:SCNVector3,
-                               isNode1exists:Bool,isNode2exists:Bool ) {
-        
+    func addNodesDict(node1Positon:SCNVector3,node2Positon:SCNVector3) {
         let position1String = "\(node1Positon)"
         let position2String = "\(node2Positon)"
-        
-        if isNode1exists {
-            
-            var arr = stringPathMap[position1String]
-            arr?.append(position2String)
-            stringPathMap[position1String] = arr
-            
-        } else { // Create new node
-            stringPathMap[position1String] = [position2String]
-        }
-        if isNode2exists {
-            
-            var arr = stringPathMap[position2String]
-            arr?.append(position1String)
-            stringPathMap[position2String] = arr
-            
-        } else { // Create new node
-            stringPathMap[position2String] = [position1String]
-        }
+        stringPathMap[position1String] = [position2String]
+        stringPathMap[position2String] = [position1String]
     }
     
     func distanceBetween(n1:SCNVector3,n2:SCNVector3) -> Float {
@@ -461,19 +260,113 @@ extension ARLineViewController: ARSCNViewDelegate {
             }
         }
     
-    
-}
+    func findNearestNode(node:SCNVector3)->SCNNode {
+        var minDistanc = Float()
+        minDistanc = 1000
+        var nearestNode = SCNNode()
 
-extension SCNNode {
-    
-    private func normalizeVector(_ iv: SCNVector3) -> SCNVector3 {
-        let length = sqrt(iv.x * iv.x + iv.y * iv.y + iv.z * iv.z)
-        if length == 0 {
-            return SCNVector3(0.0, 0.0, 0.0)
+        rootPathNode.enumerateChildNodes { (child, _) in
+            if !isEqual(n1: origin, n2: child.position) {
+
+                let dist0 = distanceBetween(n1: node, n2: child.position)
+                if minDistanc>dist0 {
+
+                    minDistanc = dist0
+                    nearestNode = child
+                }
+            }
         }
+        return nearestNode
+    }
+    
+    func navigate(destNode:String) {
+            
+            rootNavigationNode.enumerateChildNodes { (node, _) in
+                node.removeFromParentNode()
+            }
+            for data in stringPathMap {
+                let myVector = self.getCoordinatesFromStr(str: data.key)
+                print("point_pos: ", data.value[0])
+                print("my_pos: ", data.key)
+                dictOfNodes[data.key] = GKGraphNode2D(point: vector2(Float(myVector.x),Float(myVector.z)))
+                pathGraph.add([dictOfNodes[data.key]!])
+            }
         
-        return SCNVector3( iv.x / length, iv.y / length, iv.z / length)
+            for data in stringPathMap {
+                print("HERE")
+                print(data)
+
+                let keyNode = dictOfNodes[data.key]!
+
+                for data2 in data.value {
+
+                    keyNode.addConnections(to: [dictOfNodes["\(data2)"]!], bidirectional: true)
+                }
+            }
+            let startKeyVectorString = strNode
+            let destKeyVectorString = destNode
+//            print(dictOfNodes)
+            let startNodeFromDict = dictOfNodes[startKeyVectorString]
+            let destNodeFromDict = dictOfNodes[destKeyVectorString]
+
+            let wayPoint:[GKGraphNode2D] = pathGraph.findPath(from: startNodeFromDict!, to: destNodeFromDict!) as! [GKGraphNode2D]
+            
+            var x = wayPoint[0]
+            var skipWaypointFlag = true
+            for path in wayPoint {
+                
+                if skipWaypointFlag {
+                    skipWaypointFlag = false
+                    continue
+                }
+                let str = SCNVector3(x.position.x, tempYAxis, x.position.y)
+                let dst = SCNVector3(path.position.x, tempYAxis, path.position.y)
+                print("WARNING")
+                let navigationNode = CylinderLine(v1: str, v2: dst, radius: 0.2, UIImageName:"Navi")
+                navigationNode.startFlashing()
+                rootNavigationNode.addChildNode(navigationNode)
+                x = path
+            }
+            pathGraph = GKGraph()
+            stringPathMap.removeValue(forKey: strNode)
+            
+        }
+    
+    func getCoordinatesFromStr(str:String) -> vector_double3 {
         
+        let xrange = str.index(str.startIndex, offsetBy: 10)...str.index(str.endIndex, offsetBy: -1)
+        let str1 = str[xrange]
+        
+        var x:String = ""
+        var y:String = ""
+        var z:String = ""
+        var counter = 1
+        for i in str1 {
+            if (i == "-" || i == "." || i == "0" || i == "1" || i == "2" || i == "3" || i == "4" || i == "5" || i == "6" || i == "7" || i == "8" || i == "9") {
+                switch counter {
+                case 1 : x += "\(i)"
+                case 2 : y += "\(i)"
+                case 3 : z += "\(i)"
+                default : break
+                }
+            } else if (i == ",") {
+                counter = counter + 1
+            }
+        }
+        return vector3(Double(x)!,Double(y)!,Double(z)!)
+    }
+    
+    func addFinishNode(hitTestResult:ARHitTestResult) {
+        
+        let node = SCNNode(geometry:SCNCylinder(radius: 0.04, height: 1.7))
+        node.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+        node.position = SCNVector3Make(finish.x, finish.y+0.85, finish.z)
+        rootPOINode.addChildNode(node)
+
+        let nearestNode = findNearestNode(node: node.position)
+
+        stringPathMap["\(node.position)"] = ["\(nearestNode.position)"]
+        poiNode.append("\(node.position)")
     }
     
 }

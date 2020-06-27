@@ -40,14 +40,10 @@ class   CylinderLine: SCNNode
         material.diffuse.contents = UIImage(named:UIImageName)
         material.emission.contents = UIColor.green
     
-        
-        
         material.diffuse.contentsTransform = SCNMatrix4MakeScale(scaleX/3, scaleY/2, 0)
         material.diffuse.wrapS = .repeat
         material.diffuse.wrapT = .repeat
         cyl.materials = [material]
-        
-        
         
         let nodeCyl = SCNNode(geometry: cyl )
         nodeCyl.position.y = -height/2
@@ -66,8 +62,7 @@ class   CylinderLine: SCNNode
     
     weak var timer: Timer?
     
-    
-    func startTimer() {
+    func startFlashing() {
         
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { [weak self] _ in
@@ -78,11 +73,11 @@ class   CylinderLine: SCNNode
             }
         }
     }
-    func stopTimer() {
+    func stopFlashing() {
         timer?.invalidate()
     }
     deinit {
-        stopTimer()
+        stopFlashing()
     }
 }
 

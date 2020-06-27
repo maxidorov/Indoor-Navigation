@@ -112,13 +112,6 @@ class MapViewController: UIViewController {
         
     }
     
-    func process(arr : [Double]) {
-        var d = Int(arr.count / 50)
-        for i in 0...d {
-            var nowArr = arr[i...min(i+50, arr.count)]
-            
-        }
-    }
     
     func test() {
         while true {
@@ -149,12 +142,7 @@ class MapViewController: UIViewController {
                 let l = (Double((data?.distance)!) - self.last)
                 let step = l / Double(self.arr.count)
                 self.last += l
-                //self.x = 7
-                //self.y = 8
                 var cnt = 0
-                //if (self.last == l) {
-                //    self.arr = []
-                //}
                 let arrC = self.arr
                 self.arr = []
                 print(arrC)
@@ -163,10 +151,9 @@ class MapViewController: UIViewController {
                     self.x = self.x + step * cos(a)
                     self.y = self.y + step * sin(a)
                     if cnt % 40 == 0 {
-                        self.setD(x : CGFloat(self.x) * self.meter , y : CGFloat(self.y) * self.meter )
+                        self.setD(x : CGFloat(self.x) * self.meter , y : CGFloat(self.y) * self.meter)
                     }
                 }
-                self.last = l
                 print(self.arr.count)
                 self.updateManPosition()
                 print(self.last)

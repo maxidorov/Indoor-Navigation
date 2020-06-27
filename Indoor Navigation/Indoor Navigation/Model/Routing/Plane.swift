@@ -14,7 +14,6 @@ class Plane: SCNNode {
     var planeGemoetry: SCNBox?
     var anchor: ARPlaneAnchor?
     
-    
     init(anchor: ARPlaneAnchor) {
         super.init()
         let width = CGFloat(anchor.extent.x)
@@ -24,8 +23,6 @@ class Plane: SCNNode {
         self.planeGemoetry = SCNBox(width: width, height: planeHeight, length: length, chamferRadius: 0)
         
         let material = SCNMaterial()
-        let image = UIImage(named: "grid")
-        material.diffuse.contents = image
         
         let transparentMaterial = SCNMaterial()
         transparentMaterial.diffuse.contents = UIColor.white.withAlphaComponent(0.0)
@@ -50,8 +47,7 @@ class Plane: SCNNode {
         setTextureScale()
     }
     
-    func setTextureScale()
-    {
+    func setTextureScale() {
         let width = self.planeGemoetry?.width
         let length = self.planeGemoetry?.length
         
